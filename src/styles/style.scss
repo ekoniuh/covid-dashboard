@@ -1,0 +1,46 @@
+@import './footer.scss';
+
+html {
+  font-family: 'Montserrat', Verdana, sans-serif;
+  font-size: 10px;
+  user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+h1 {
+  font-family: 'Nerko One', cursive;
+  font-size: 5rem;
+  cursor: pointer;
+}
+
+.body {
+  width: 100%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.6rem;
+  background: #252323c9;
+}
+
+.wrapper {
+  max-width: 1360px;
+  margin: auto;
+  padding: 0 40px;
+}
+
+@media screen and (max-width: 767px) {
+}
+
+@media screen and (max-width: 500px) {
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-height: 724px) {
+}
