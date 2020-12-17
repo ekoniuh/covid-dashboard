@@ -12,15 +12,82 @@
 </head>
 
 <body class="body">
+	<!-- <header class="header">
+		<div class="logo">COVID-19 Dashboard</div>
+	</header> -->
+	<main class="main">
+		<div class="wrapper">
+			<div class="left-container">
+				<div class="global-data">
+					<h2 class="global-title">TOTAL CASES</h2>
+					<span class="total-count">74672924</span>
+				</div>
 
+				<table class="table table-striped table-sm ">
+					<thead>
+						<tr>
+							<th>
+								<div class="title-wrapper">
+									<span>Country</span><button class="btn btn-outline-secondary" type="button">🔎
 
-	<main>
+									</button>
+								</div>
+							</th>
+							<th><select class="select-country">
+									<option class="table-point" value="cases">Total cases</option>
+									<option class="table-point" value="deaths">Total deaths</option>
+									<option class="table-point" value="recovered">
+										Total recovered</option>
+								</select></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><img src="https://disease.sh/assets/img/flags/us.png" style="border: 5px; height: 13%;"> USA</td>
+							<td>17395727</td>
+						</tr>
+						<tr>
+							<td><img src="https://disease.sh/assets/img/flags/bh.png" style="border: 5px; height: 13%;"> Bahrain
+							</td>
+							<td>89600</td>
+						</tr>
+						<tr>
+							<td><img src="https://disease.sh/assets/img/flags/my.png" style="border: 5px; height: 13%;"> Malaysia
+							</td>
+							<td>89133</td>
+						</tr>
+						<tr>
+							<td><img src="https://disease.sh/assets/img/flags/cn.png" style="border: 5px; height: 13%;"> China</td>
+							<td>86777</td>
+						</tr>
+						<tr>
+							<td><img src="https://disease.sh/assets/img/flags/kg.png" style="border: 5px; height: 13%;"> Kyrgyzstan
+							</td>
+							<td>78415</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+
+			<div class="center-container">
+				<div class="map-box"></div>
+			</div>
+
+			<div class="rigth-container">
+				<div class="global-deaths">
+
+				</div>
+
+			</div>
+		</div>
+
 
 	</main>
 	<footer class="footer">
 		<div class="wrap">
 			<div class="footer__inner">
-				<span>2020 © covid-dashboard</span>
+				<span>2020 © COVID-19 Dashboard</span>
 			</div>
 			<div class="social-list">
 				<a href="https://github.com/ekoniuh" class="social-list__item" alt="github">
