@@ -14,5 +14,6 @@ module.exports = {
     // 'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'lines-between-class-members': 'off',
     'import/prefer-default-export': 'off',
+    // 'plugin/react-recommended'
   },
 };

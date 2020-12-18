@@ -1,32 +1,47 @@
-// export default class CasesTableView {
-//   constructor({ countries, cases }) {
-//     this.cases = cases;
-//   }
+export default class CasesTableView {
+  constructor(data) {
+    this.data = data;
+  }
+  // constructor(countriesName, nameOfFlags, cases) {
+  //   this.cases = cases;
+  //   this.countries = countriesName;
+  //   this.nameOfFlags = nameOfFlags;
+  // }
 
-//   list = null;
+	// list = null;
+	buildImg() {
+		return `<td><img src="https://disease.sh/assets/img/flags/${}.png">${}</td>`
+	}
 
-//   _buildRow(data) {
-//     return `<li>${data}</li>`;
-//   }
+  buildRow(country) {
+    return `<tr>
+							${this.buildImg}
+							<td>${country}</td>
+					</tr>`;
+  }
 
-//   _buildList(rows) {
-//     return `<ul>
-// ${rows.map((rowDada) => this._buildRow(rowDada))}
-// </ul>`;
-//   }
+  buildList() {
+    return `<table class="table">
+							<tbody>
+						
+									${this.data.Countries.map((item) => this.buildRow(item.Country))}
+							</tbody>
+						</table>`;
+  }
 
-//   _buildModeButtons() {
-//     return `<button onclick={() => {sort()}}>a</button><button>a</button><button>a</button>`;
-//   }
+  buildModeButtons() {
+    return `<button onclick={() => {sort()}}>a</button>
+		<button>a</button><button>a</button>`;
+  }
 
-//   updateList(data) {
-//     this.list;
-//   }
+  // updateList(data) {
+  //   this.list;
+  // }
 
-//   render(data) {
-//     return `<div>
-// ${this._buildList(this.countries)}
-// ${this._buildModeButtons()}
-// </div>`;
-//   }
-// }
+  render() {
+    return `<div>
+							${this.buildList()}
+					</div>`;
+    // ${this.buildModeButtons()}
+  }
+}
