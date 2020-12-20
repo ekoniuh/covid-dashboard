@@ -1,6 +1,6 @@
-// import TableView from './tableView';
+// import CasesTableView from './tableView';
 
-export default class CasesTable {
+export default class CasesGlobalModel {
   constructor() {
     // this.mode = CasesTable.MODES.ALL;
     // todo работать лучше с data где всё
@@ -8,10 +8,13 @@ export default class CasesTable {
 
     this.countries = [];
     this.countriesName = [];
+    this.countriesData = [];
     this.cases = [];
     this.nameOfFlags = [];
     this.TotalConfirmedCountry = [];
     this.data = {};
+    this.init();
+
     // this.TableView = new TableView();
   }
 
@@ -19,11 +22,25 @@ export default class CasesTable {
   //   BY_DAY: 'by_day',
   //   ALL: 'all',
   // };
+  async init() {
+    await this.fetchCountries();
+    if (this.view) {
+      // this.sortData();
+      this.view.render();
+    }
+  }
+
+  getCountriesData() {
+    // this.sortData();
+    return this.countriesData;
+  }
 
   async fetchCountries() {
     try {
       const response = await fetch('https://api.covid19api.com/summary');
       this.data = await response.json();
+      // console.log(this.data);
+      // this.sortData();
 
       // TODO мне здесь данные брать сразу?
       this.countriesData = this.data.Countries;
@@ -35,13 +52,18 @@ export default class CasesTable {
       this.nameOfFlags = this.data.Countries.map((item) =>
         item.CountryCode.toLowerCase()
       );
-      // console.log('this.countries', this.data.Countries);
-      // console.log('this.countries', this.nameOfFlags);
     } catch (error) {
       console.log(error);
     }
   }
 
+  // sortData() {
+  //   // this.stats.sort((a, b) => (a[`${word}`] < b[`${word}`] ? 1 : -1));
+  //   this.data.sort((a, b) =>
+  //     a.Countries.TotalConfirmed < b.Countries.TotalConfirmed ? 1 : -1
+  //   );
+  //   console.log('this.data', this.data);
+  // }
   // async fetchCases() {
   //   try {
   //     this.cases = await fetch('https://covid19-api.org/api/timeline');

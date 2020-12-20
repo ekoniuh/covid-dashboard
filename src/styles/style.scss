@@ -1,6 +1,7 @@
 @import './footer.scss';
 @import './buttonFullScreen.scss';
 @import './scrollBar.scss';
+@import './switch.scss';
 
 html {
   font-family: 'Montserrat', Verdana, sans-serif;
@@ -32,17 +33,41 @@ h1 {
 .wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   margin: auto;
   height: 80vh;
-  padding: 0 40px;
+  padding: 0 16px;
+  margin-top: 1%;
+}
+
+.header {
+  max-width: 80%;
+  display: flex;
+  padding: 13px;
+  margin-left: auto;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  color: white;
+  font-family: 'Montserrat', Verdana, sans-serif;
+}
+
+.btn-control {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 10px;
 }
 
 .main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  // height: 100%;
 }
 
 .center-container {
@@ -62,15 +87,16 @@ h1 {
 }
 
 .left-container {
-  width: 15%;
+  width: 18%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-right: 32px;
+  margin-right: 24px;
 }
 
 .global-data {
+  padding: 16px;
   margin-bottom: 16px;
   text-align: center;
   font-size: 24px;
@@ -78,28 +104,35 @@ h1 {
 }
 
 .global-title {
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .total-count {
 }
 
 .country-wrap {
-  height: 100%;
+  height: 86%;
   padding: 10px 0;
 }
 
 .head-info {
   display: flex;
   justify-content: space-around;
+  padding: 6px 10px;
 }
 
+.switch-wrap {
+  width: 152px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .search-country {
-  width: 64px;
-  margin-right: 10px;
+  width: 130px;
+  margin-right: 8%;
 }
 
-.select-country {
+.select-parameter {
   width: 96px;
 }
 
@@ -108,7 +141,7 @@ h1 {
 
 .table {
   width: 100%;
-  height: 100%;
+  height: 98%;
   display: block;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -127,6 +160,11 @@ h1 {
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #ada9a98c;
+
+    &:hover {
+      cursor: pointer;
+      background: #ff000073;
+    }
   }
   & img {
     width: 30px;
@@ -156,25 +194,27 @@ h1 {
 .table-point {
 }
 
-.rigth-container {
-  width: 20%;
+.right-container {
+  width: 32%;
   height: 100%;
-  margin-left: 32px;
+  margin-left: 24px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  min-width: 380px;
 }
 
-.table-recovered-deaths {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-}
+// .table-recovered-deaths {
+//   display: flex;
+//   justify-content: space-between;
+//   width: 100%;
+//   height: 100%;
+// }
 
 .global-deaths,
 .global-recovered {
-  width: 47%;
-  height: 95%;
+  width: 100%;
+  height: 28%;
 }
 
 .global-deaths {
@@ -185,9 +225,56 @@ h1 {
 
 .graph-container {
   width: 100%;
-  height: 100%;
+  height: 40%;
 }
 
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    order: 1;
+    width: 100%;
+    // height: 96%;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    align-items: end;
+  }
+  .left-container {
+    margin-right: 0;
+    order: 2;
+    width: 24%;
+    height: 39%;
+    // flex-wrap: wrap;
+  }
+
+  .country-wrap {
+    height: 100%;
+  }
+
+  .center-container {
+    height: 48%;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .right-container {
+    flex-wrap: wrap;
+    height: 54%;
+    margin-left: 0;
+    order: 3;
+    flex-direction: row;
+    width: 70%;
+  }
+  .global-deaths,
+  .global-recovered {
+    width: 48%;
+  }
+
+  .graph-container {
+    height: 63%;
+  }
+
+  .table {
+    height: 96%;
+  }
+}
 @media screen and (max-width: 767px) {
 }
 

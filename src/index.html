@@ -12,9 +12,16 @@
 </head>
 
 <body class="body">
-	<!-- <header class="header">
+	<header class="header">
 		<div class="logo">COVID-19 Dashboard</div>
-	</header> -->
+		<!-- <div class="control-wrap">
+			<button class="btn-control"></button>
+			<button class="btn-control"></button>
+			<button class="btn-control"></button>
+			<button class="btn-control"></button>
+		</div> -->
+		<input type="text" class="search-country">
+	</header>
 	<main class="main">
 		<div class="wrapper">
 			<div class="left-container">
@@ -27,174 +34,27 @@
 					<h2 class="global-title">TOTAL CASES</h2>
 					<span class="total-count">74672924</span>
 				</div>
-
 				<div class="country-wrap box-shadow full-screen__btn-relative">
 					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
 
 					<div class="head-info">
-						<input type="text" class="search-country">
-						<select class="select-country">
+						<div class="switch-wrap">
+							<label class="switch switch-time-all">
+								<input type="checkbox" class="switch-change time-all" data-switch-active="false" data-switch="time-all">
+								<span class="slider"></span>
+							</label>
+							<label class="switch switch-absolute-value">
+								<input type="checkbox" class="switch-change" data-switch-active="false" data-switch="absolute-value">
+								<span class="slider"></span>
+							</label>
+						</div>
+						<select class="select-parameter">
 							<option class="table-point" value="cases">Total cases</option>
 							<option class="table-point" value="deaths">Total deaths</option>
 							<option class="table-point" value="recovered">Total recovered</option>
 						</select>
 					</div>
-					<table class="table">
-						<tbody>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/my.png"> Malaysia
-								</td>
-								<td>89133</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/cn.png"> China</td>
-								<td>86777</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/kg.png"> Kyrgyzstan
-								</td>
-								<td>78415</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/my.png"> Malaysia
-								</td>
-								<td>89133</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/cn.png"> China</td>
-								<td>86777</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/kg.png"> Kyrgyzstan
-								</td>
-								<td>78415</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/us.png"> USA</td>
-								<td>17395727</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/bh.png"> Bahrain
-								</td>
-								<td>89600</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/my.png"> Malaysia
-								</td>
-								<td>89133</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/cn.png"> China</td>
-								<td>86777</td>
-							</tr>
-							<tr>
-								<td><img src="https://disease.sh/assets/img/flags/kg.png"> Kyrgyzstan
-								</td>
-								<td>78415</td>
-							</tr>
 
-
-						</tbody>
-					</table>
 				</div>
 				<!-- 
 					<thead>
@@ -221,26 +81,57 @@
 				</div>
 			</div>
 
-			<div class="rigth-container ">
-				<div class="table-recovered-deaths">
-					<div class="global-deaths box-shadow full-screen__btn-relative">
-						<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+			<div class="right-container ">
 
+				<div class="global-deaths box-shadow full-screen__btn-relative">
+					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+					<div class="head-info">
+						<div class="switch-wrap">
+							<label class="switch switch-time-all">
+								<input type="checkbox" class="switch-change time-all" data-switch-active="false" data-switch="time-all">
+								<span class="slider"></span>
+							</label>
+							<label class="switch switch-absolute-value">
+								<input type="checkbox" class="switch-change" data-switch-active="false" data-switch="absolute-value">
+								<span class="slider"></span>
+							</label>
+						</div>
+						<select class="select-parameter">
+							<option class="table-point" value="cases">Total cases</option>
+							<option class="table-point" value="deaths">Total deaths</option>
+							<option class="table-point" value="recovered">Total recovered</option>
+						</select>
 					</div>
-					<div class=" global-recovered box-shadow full-screen__btn-relative">
-						<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
-
+					<div class="cases-wrap">
+						<table class="stat-table table table-hover table-responsive-md table-responsive-sm">
+							<thead>
+								<tr class="table-cases-wrap">
+									<th class="cases-head">Total cases</th>
+									<th class="cases-head">Total deaths</th>
+									<th class="cases-head">Total healed</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="cases-info">76906711</td>
+									<td class="cases-info">1696440</td>
+									<td class="cases-info">53945618</td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- <h2 class="cases__title">Global Deaths</h2>
+						<span class="cases__counter">3216484894</span> -->
 					</div>
 				</div>
 
+				<!-- <div class=" global-recovered box-shadow full-screen__btn-relative">
+					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+				</div> -->
 				<div class="graph-container box-shadow full-screen__btn-relative">
 					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
-
 				</div>
-
 			</div>
 		</div>
-
 
 	</main>
 	<footer class="footer">
@@ -256,7 +147,6 @@
 					<img src="./assets/images/footer-socials/rs-school.svg" class="social-list__item-img" alt="rsschool-logo">
 				</a>
 			</div>
-
 		</div>
 	</footer>
 
