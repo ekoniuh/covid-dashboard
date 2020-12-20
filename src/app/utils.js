@@ -36,5 +36,4 @@ export function setPerOneHundredThousand(data) {
 
 export function sortData(data, key) {
   data.sort((a, b) => (a[key] < b[key] ? 1 : -1));
-  console.log('this.data', data);
 }

@@ -7,7 +7,11 @@ import { sortData } from './utils';
 const casesGlobalModel = new CasesGlobalModel();
 const casesGlobalModelView = new CasesGlobalModelView(casesGlobalModel);
 
-document.querySelector('.country-wrap').append(casesGlobalModelView.render());
+function updateWrapTable() {
+  document.querySelector('.country-wrap').append(casesGlobalModelView.render());
+}
+updateWrapTable();
+// document.querySelector('.country-wrap').append(casesGlobalModelView.render());
 // document.querySelector('.country-wrap').append(casesGlobalModelView.render());
 
 function changeTotal(key) {
@@ -70,13 +74,13 @@ document
   .querySelector('.select-parameter')
   .addEventListener('change', ({ target }) => {
     state.switchParameterState = target.value;
-    changeTotal(
-      getKeyTotal(
-        state.switchParameterState,
-        state.isSwitchParameterPeriod,
-        state.isSwitchParameterValue
-      )
+
+    getKeyTotal(
+      state.switchParameterState,
+      state.isSwitchParameterPeriod,
+      state.isSwitchParameterValue
     );
+    updateWrapTable();
   });
 
 function changeCaseSwitch(target) {
@@ -106,18 +110,17 @@ function changeCaseSwitch(target) {
     default:
   }
 
-  changeTotal(
-    getKeyTotal(
-      state.switchParameterState,
-      state.isSwitchParameterPeriod,
-      state.isSwitchParameterValue
-    )
+  getKeyTotal(
+    state.switchParameterState,
+    state.isSwitchParameterPeriod,
+    state.isSwitchParameterValue
   );
 }
 
 [...document.querySelectorAll('.switch-change')].forEach((item) => {
   item.addEventListener('change', ({ target }) => {
     changeCaseSwitch(target);
+    updateWrapTable();
   });
 });
 // document
