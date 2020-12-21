@@ -8,8 +8,6 @@ export default class CasesGlobalModelView {
     this.viewWrapper.classList.add('table');
   }
 
-  // list = null;
-
   render() {
     this.viewWrapper.innerHTML = this.buildList();
     return this.viewWrapper;

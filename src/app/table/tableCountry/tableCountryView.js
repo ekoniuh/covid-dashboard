@@ -1,12 +1,13 @@
-export default class CasesGlobalModelView {
-  constructor(globalModel) {
-    this.globalModel = globalModel;
-    this.globalModel.view = this;
-    this.viewWrapper = document.createElement('table');
-    this.viewWrapper.classList.add('table');
+export default class CasesCountryView {
+  // constructor(globalModel) {
+  //   this.globalModel = globalModel;
+  //   this.globalModel.view = this;
+  //   this.viewWrapper = document.createElement('table');
+  //   this.viewWrapper.classList.add('table');
+  // }
+  constructor(countriesData) {
+    this.countriesData = countriesData;
   }
-
-  // list = null;
 
   render() {
     this.viewWrapper.innerHTML = this.buildList();
