@@ -111,18 +111,43 @@ h1 {
 }
 
 .country-wrap {
-  height: 86%;
-  padding: 10px 0;
+  height: 82%;
+  // padding: 10px 0;
+  & .head-info {
+    flex-direction: column;
+  }
+  & .switch-wrap {
+    width: 216px;
+    justify-content: space-between;
+    padding: 10px;
+  }
 }
 
 .head-info {
+  margin-top: 11px;
+  padding: 10px;
+  width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: 6px 10px;
+  align-items: center;
+}
+
+.head__title {
+  width: 216px;
+  display: flex;
+  justify-content: space-between;
+
+  & h4 {
+    display: inline-block;
+    font-size: 11px;
+    color: #00ffe7;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+  }
 }
 
 .switch-wrap {
-  width: 152px;
+  width: 160px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -141,7 +166,7 @@ h1 {
 
 .table {
   width: 100%;
-  height: 98%;
+  height: 78%;
   display: block;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -202,6 +227,12 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   min-width: 380px;
+
+  & .stat-table {
+    height: auto;
+    overflow: inherit;
+    margin-top: 40px;
+  }
 }
 
 // .table-recovered-deaths {
@@ -211,16 +242,9 @@ h1 {
 //   height: 100%;
 // }
 
-.global-deaths,
-.global-recovered {
+.global-info {
   width: 100%;
-  height: 28%;
-}
-
-.global-deaths {
-}
-
-.global-recovered {
+  height: 40%;
 }
 
 .graph-container {
@@ -229,24 +253,54 @@ h1 {
 }
 
 @media screen and (max-width: 1200px) {
+  .main {
+    height: 88%;
+  }
+
   .wrapper {
     order: 1;
     width: 100%;
-    // height: 96%;
-    margin-bottom: 30px;
+    margin-bottom: 12px;
     flex-wrap: wrap;
     align-items: end;
   }
+
+  .header {
+    padding: 4px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
   .left-container {
     margin-right: 0;
     order: 2;
     width: 24%;
-    height: 39%;
-    // flex-wrap: wrap;
+    height: 48%;
+    & table {
+      height: 73%;
+    }
+    & .head-info {
+      padding: 0;
+    }
+    & .switch-wrap {
+      width: 140px;
+    }
   }
 
   .country-wrap {
-    height: 100%;
+    height: 75%;
+  }
+
+  .global-data {
+    padding: 6px;
+  }
+
+  .global-info,
+  .left-container {
+    min-width: 160px;
+    margin-right: 10px;
   }
 
   .center-container {
@@ -254,25 +308,75 @@ h1 {
     width: 100%;
     margin-bottom: 20px;
   }
+
   .right-container {
-    flex-wrap: wrap;
-    height: 54%;
+    width: 73%;
+    flex-wrap: nowrap;
+    height: 49%;
     margin-left: 0;
     order: 3;
     flex-direction: row;
-    width: 70%;
+    & .switch-wrap {
+      padding: 10px;
+      width: 100%;
+    }
+
+    & .head-info {
+      flex-direction: column;
+    }
+
+    & .cases-head,
+    & .cases-info {
+      font-size: 12px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      border-bottom: 1px solid #ada9a98c;
+      text-align: center;
+    }
+    & tbody {
+      height: 100%;
+
+      & tr {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+      }
+    }
+
+    & .stat-table {
+      display: flex;
+      height: auto;
+      overflow: inherit;
+      margin-top: 40px;
+    }
+    & thead {
+      display: flex;
+      flex-direction: column;
+
+      & tr {
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+      }
+    }
   }
-  .global-deaths,
-  .global-recovered {
-    width: 48%;
+
+  .global-info {
+    width: 24%;
+    height: 100%;
+  }
+
+  .head-info {
+    margin: 0;
   }
 
   .graph-container {
-    height: 63%;
+    height: 100%;
+    width: 74%;
   }
 
   .table {
-    height: 96%;
+    height: 86%;
   }
 }
 @media screen and (max-width: 767px) {

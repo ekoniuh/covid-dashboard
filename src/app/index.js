@@ -14,11 +14,11 @@ updateWrapTable();
 // document.querySelector('.country-wrap').append(casesGlobalModelView.render());
 // document.querySelector('.country-wrap').append(casesGlobalModelView.render());
 
-function changeTotal(key) {
-  [...document.querySelectorAll('.cases-total')].forEach((total, index) => {
-    total.textContent = casesGlobalModel.countriesData[index][key];
-  });
-}
+// function changeTotal(key) {
+//   [...document.querySelectorAll('.cases-total')].forEach((total, index) => {
+//     total.textContent = casesGlobalModel.countriesData[index][key];
+//   });
+// }
 
 function getKeyTotal(statePeople, period, valueAbsolute) {
   if (statePeople === 'cases') {

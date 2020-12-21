@@ -35,6 +35,7 @@ export default class CasesGlobalModel {
   getCountriesData() {
     if (this.countriesData) {
       sortData(this.countriesData, state.keyValue);
+      console.log(this.countriesData);
     }
     return this.countriesData.filter((item) => {
       if (item.country === 'MS Zaandam') {
@@ -49,20 +50,18 @@ export default class CasesGlobalModel {
 
   async fetchCountries() {
     try {
-      const globalDataResponse = await fetch(
-        'https://api.covid19api.com/summary'
-      );
-      this.globalData = await globalDataResponse.json();
+      // const globalDataResponse = await fetch(
+      //   'https://api.covid19api.com/summary'
+      // );
+      // this.globalData = await globalDataResponse.json();
       const countriesData = await fetch(
         'https://disease.sh/v3/covid-19/countries'
       );
       this.countriesData = await countriesData.json();
-      // console.log(this.countriesData);
 
       setPerOneHundredThousand(this.countriesData);
-      // this.sortData();
+      // console.log(this.countriesData);
 
-      // TODO мне здесь данные брать сразу?
       // this.countriesData = this.data.Countries;
       // this.countriesName = this.data.Countries.map((item) => item.Country);
       // this.TotalConfirmedCountry = this.data.Countries.map(
