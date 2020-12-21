@@ -93,19 +93,27 @@
 				<div class="global-info box-shadow full-screen__btn-relative">
 					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
 					<div class="head-info">
-						<div class="head__title">
+						<!-- <div class="head__title">
 							<h4>Total all/today</h4>
 							<h4>Population/100 000</h4>
-						</div>
+						</div> -->
 						<div class="switch-wrap">
-							<label class="switch switch-time-all">
-								<input type="checkbox" class="switch-change time-all" data-switch-active="false" data-switch="time-all">
-								<span class="slider"></span>
-							</label>
-							<label class="switch switch-absolute-value">
-								<input type="checkbox" class="switch-change" data-switch-active="false" data-switch="absolute-value">
-								<span class="slider"></span>
-							</label>
+							<div class="time-wrap head__title">
+								<h4>Total all/today</h4>
+								<label class="switch switch-time-all">
+									<input type="checkbox" class="switch-change time-all" data-switch-active="false"
+										data-switch="time-all">
+									<span class="slider"></span>
+								</label>
+							</div>
+							<div class="absolute-value-wrap head__title">
+								<h4>Population/100 000</h4>
+								<label class="switch switch-absolute-value">
+									<input type="checkbox" class="switch-change" data-switch-active="false" data-switch="absolute-value">
+									<span class="slider"></span>
+								</label>
+							</div>
+
 						</div>
 						<!-- <select class="select-parameter">
 							<option class="table-point" value="cases">Total cases</option>
