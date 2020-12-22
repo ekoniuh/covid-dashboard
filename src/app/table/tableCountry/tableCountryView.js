@@ -1,44 +1,47 @@
+// import { stateCountryTable } from '../../state';
+
 export default class CasesCountryView {
-  // constructor(globalModel) {
-  //   this.globalModel = globalModel;
-  //   this.globalModel.view = this;
-  //   this.viewWrapper = document.createElement('table');
-  //   this.viewWrapper.classList.add('table');
-  // }
-  constructor(countriesData) {
-    this.countriesData = countriesData;
+  constructor(globalModel) {
+    // this.globalModel.view = this;
+    // // [this.casesData] = [casesData[0]];
+
+    // this.casesData = globalModel.getCountriesData();
+    this.viewWrapper = document.createElement('table');
+    this.viewWrapper.className = 'stat-table table';
   }
 
-  render() {
-    this.viewWrapper.innerHTML = this.buildList();
+  render(casesData, key) {
+    // console.log(this.casesData);
+    // FIX мне не нравится передавать импортированные данные
+    this.viewWrapper.innerHTML = this.buildList(casesData, key);
     return this.viewWrapper;
     // ${this.buildModeButtons()}
   }
 
-  buildList() {
+  buildList(casesData, key) {
     return `<tbody>
-            ${this.globalModel
-              .getCountriesData()
-              .map((item) => this.buildRow(item))}
+               <tr>
+									<td class="cases-info">${casesData[`cases${key}`]}</td>
+									<td class="cases-info">${casesData[`deaths${key}`]}</td>
+									<td class="cases-info">${casesData[`recovered${key}`]}</td>
+								</tr>
             </tbody>`;
   }
 
-  buildRow({ cases, countryInfo, country }) {
-    return `<tr>
-							${this.buildImg(countryInfo, country)}
-							 ${this.buildTotalConfirmed(cases)}
-					  </tr>`;
-  }
+  // buildRow() {
+  //   return `
+  // 						${this.}
+  // 						 ${this.build}
+  // 				 >`;
+  // }
 
-  buildImg(CountryCode, country) {
-    return `<td><img src="${countryInfo.flag}">${country}</td>`;
-  }
+  // buildImg() {
+  //   return ``;
+  // }
 
-  buildTotalConfirmed(total) {
-    return `<td>
-              ${total}
-            </td>`;
-  }
+  // buildTotalConfirmed(total) {
+  //   return ``;
+  // }
   // buildModeButtons() {
   //   return `<button onclick={() => {sort()}}>a</button>
   // 	<button>a</button><button>a</button>`;

@@ -1,12 +1,39 @@
 // import CasesTableView from './tableView';
-import { sortData } from '../../utils';
-import state from '../../state';
+import { sortData, addFieldPerOneHundredThousand } from '../../utils';
+import stateGlobalTable from '../../state';
 
 export default class CasesCountryModel {
-  constructor(countriesData) {
-    this.countriesData = countriesData;
+  constructor() {
+    this.globalCasesData = [];
+    this.init();
   }
 
-  
+  async init() {
+    await this.fetchGlobalData();
+    //  console.log(this.globalCasesData);
+    // if (this.view) {
+    //   // this.sortData();
+    //   this.view.render();
+    // }
+  }
+
+  // getCountriesData() {
+  //   return this.globalCasesData;
+  // }
+
+  async fetchGlobalData() {
+    try {
+      const globalDataResponse = await fetch(
+        'https://disease.sh/v3/covid-19/all'
+      );
+      this.globalCasesData[0] = await globalDataResponse.json();
+      // this.globalData.push(this.globalDataObj);
+
+      // console.log(this.globalCasesData);
+      addFieldPerOneHundredThousand(this.globalCasesData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 }

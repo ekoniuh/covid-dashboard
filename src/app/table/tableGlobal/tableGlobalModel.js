@@ -1,22 +1,19 @@
 // import CasesTableView from './tableView';
-import { setPerOneHundredThousand, sortData } from '../../utils';
-import state from '../../state';
+import { addFieldPerOneHundredThousand, sortData } from '../../utils';
+import { stateGlobalTable } from '../../state';
 
 export default class CasesGlobalModel {
   constructor() {
-    // this.mode = CasesTable.MODES.ALL;
-    // todo работать лучше с data где всё
-    // todo лежит или подоставать оттуда инфу ?
-
-    this.countries = [];
-    this.countriesName = [];
     this.countriesData = [];
-    this.cases = [];
-    this.nameOfFlags = [];
     this.TotalConfirmedCountry = [];
-    this.globalData = {};
+    this.globalData = [];
     this.init();
 
+    // this.countries = [];
+    // this.mode = CasesTable.MODES.ALL;
+    // this.countriesName = [];
+    // this.cases = [];
+    // this.nameOfFlags = [];
     // this.TableView = new TableView();
   }
 
@@ -27,14 +24,13 @@ export default class CasesGlobalModel {
   async init() {
     await this.fetchCountries();
     if (this.view) {
-      // this.sortData();
       this.view.render();
     }
   }
 
   getCountriesData() {
     if (this.countriesData) {
-      sortData(this.countriesData, state.keyValue);
+      sortData(this.countriesData, stateGlobalTable.keyValue);
       console.log(this.countriesData);
     }
     return this.countriesData.filter((item) => {
@@ -59,7 +55,7 @@ export default class CasesGlobalModel {
       );
       this.countriesData = await countriesData.json();
 
-      setPerOneHundredThousand(this.countriesData);
+      addFieldPerOneHundredThousand(this.countriesData);
       // console.log(this.countriesData);
 
       // this.countriesData = this.data.Countries;
@@ -76,15 +72,18 @@ export default class CasesGlobalModel {
     }
   }
 
-  // async fetchCases() {
+  // async fetchGlobalData() {
   //   try {
-  //     this.cases = await fetch('https://covid19-api.org/api/timeline');
-  //   } catch (er) {
-  //     console.log(er);
-  //   }
-  // }
+  //     const globalDataResponse = await fetch(
+  //       'https://disease.sh/v3/covid-19/all'
+  //     );
+  //     this.globalData[0] = await globalDataResponse.json();
+  //     // this.globalData.push(this.globalDataObj);
 
-  // changeSort() {
-  //   this.countries.sort();
+  //     console.log(this.globalData);
+  //     addFieldPerOneHundredThousand(this.globalData);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
   // }
 }
