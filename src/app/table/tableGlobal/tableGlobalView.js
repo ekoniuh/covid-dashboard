@@ -1,4 +1,4 @@
-import {stateGlobalTable} from '../../state';
+import { stateGlobalTable } from '../../state';
 
 export default class CasesGlobalModelView {
   constructor(globalModel) {

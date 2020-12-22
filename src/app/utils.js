@@ -78,6 +78,9 @@ export function getKeyTotal(statePeople, isPeriod, isValueAbsolute) {
   if (statePeople === 'recovered') {
     return changeKeyValue(statePeople, isPeriod, isValueAbsolute);
   }
+  if (!statePeople) {
+    return changeKeyValue(statePeople, isPeriod, isValueAbsolute);
+  }
 
   return '';
 }

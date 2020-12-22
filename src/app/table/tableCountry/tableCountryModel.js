@@ -5,7 +5,7 @@ import stateGlobalTable from '../../state';
 export default class CasesCountryModel {
   constructor() {
     this.globalCasesData = [];
-    this.init();
+    this.loadingData = this.init();
   }
 
   async init() {
@@ -27,13 +27,12 @@ export default class CasesCountryModel {
         'https://disease.sh/v3/covid-19/all'
       );
       this.globalCasesData[0] = await globalDataResponse.json();
-      // this.globalData.push(this.globalDataObj);
 
-      // console.log(this.globalCasesData);
+      // this.globalData.push(this.globalCasesData[0]);
+      console.log(this.globalCasesData);
       addFieldPerOneHundredThousand(this.globalCasesData);
     } catch (error) {
       console.log(error);
     }
   }
-
 }

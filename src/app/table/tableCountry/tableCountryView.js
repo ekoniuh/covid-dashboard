@@ -1,25 +1,39 @@
 // import { stateCountryTable } from '../../state';
 
 export default class CasesCountryView {
-  constructor(globalModel) {
+  constructor(data, key) {
     // this.globalModel.view = this;
     // // [this.casesData] = [casesData[0]];
 
-    // this.casesData = globalModel.getCountriesData();
-    this.viewWrapper = document.createElement('table');
-    this.viewWrapper.className = 'stat-table table';
+    this.data = data;
+    this.key = key;
+
+    this.viewWrapper = document.createElement('tbody');
+
+    // this.init();
+    // this.viewWrapper.className = 'stat-table table';
   }
+
+  // init() {
+  //   this.render(this.data, this.key);
+  // }
 
   render(casesData, key) {
     // console.log(this.casesData);
     // FIX мне не нравится передавать импортированные данные
+
     this.viewWrapper.innerHTML = this.buildList(casesData, key);
     return this.viewWrapper;
     // ${this.buildModeButtons()}
   }
 
   buildList(casesData, key) {
-    return `<tbody>
+    return `${
+      casesData.countryInfo
+        ? this.buildImg(casesData.countryInfo, casesData.country)
+        : ''
+    }
+            <tbody>
                <tr>
 									<td class="cases-info">${casesData[`cases${key}`]}</td>
 									<td class="cases-info">${casesData[`deaths${key}`]}</td>
@@ -28,15 +42,17 @@ export default class CasesCountryView {
             </tbody>`;
   }
 
+  buildImg(countryInfo, country) {
+    return `<div class="country-info">
+               <img src="${countryInfo.flag}" alt="">
+               <h3>${country}</h3>
+            </div>`;
+  }
   // buildRow() {
   //   return `
   // 						${this.}
   // 						 ${this.build}
   // 				 >`;
-  // }
-
-  // buildImg() {
-  //   return ``;
   // }
 
   // buildTotalConfirmed(total) {

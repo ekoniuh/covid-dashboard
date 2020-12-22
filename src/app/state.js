@@ -2,6 +2,7 @@ const stateGlobalTable = {
   // switchParameterPeriod: '',
   switchParameterState: 'cases',
   // switchParameterValue: '',
+  isClickCountry: false,
   isSwitchActive: null,
   isSwitchParameterPeriod: false,
   isSwitchParameterValue: false,
@@ -9,12 +10,14 @@ const stateGlobalTable = {
 };
 
 const stateCountryTable = {
+  countryData: [],
   nameCountry: null,
   keyParameterState: 'cases',
   keyParameterPeriod: 'deaths',
   keyParameterValue: 'recovered',
   keyView: '',
   // switchParameterValue: '',
+  switchParameterState: '',
   isSwitchActive: null,
   isSwitchParameterPeriod: false,
   isSwitchParameterValue: false,

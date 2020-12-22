@@ -15,29 +15,30 @@ const casesGlobalModel = new CasesGlobalModel();
 const casesGlobalModelView = new CasesGlobalModelView(casesGlobalModel);
 
 const casesCountryModel = new CasesCountryModel();
-const casesCountryView = new CasesCountryView(casesCountryModel);
-// stateCountryTable.defaultDataGlobal = casesCountryModel.globalCasesData;
-// console.log(
-//   'stateCountryTable.defaultDataGlobal',
-//   stateCountryTable.defaultDataGlobal
-// );
+const casesCountryView = new CasesCountryView();
 
 function updateTableGlobal() {
   document.querySelector('.country-wrap').append(casesGlobalModelView.render());
 }
 
-function updateTableCountry(data, key) {
-  console.log(
-    'stateCountryTable.defaultDataGlobal',
-    stateCountryTable.defaultDataGlobal
-  );
+casesCountryModel.loadingData.then(() => {
   document
-    .querySelector('.cases-wrap')
+    .querySelector('.stat-table')
+    .append(
+      casesCountryView.render(
+        casesCountryModel.globalCasesData[0],
+        stateCountryTable.keyView
+      )
+    );
+});
+
+function updateTableCountry(data, key) {
+  document
+    .querySelector('.stat-table')
     .append(casesCountryView.render(data, key));
 }
 
 updateTableGlobal();
-// updateTableCountry();
 
 document
   .querySelector('.left-container .select-parameter')
@@ -65,6 +66,18 @@ document
 
       sortData(casesGlobalModel.countriesData, stateGlobalTable.keyValue);
       updateTableGlobal();
+
+      if (stateGlobalTable.isClickCountry) {
+        updateTableCountry(
+          stateCountryTable.countryData,
+          stateCountryTable.keyView
+        );
+      } else {
+        updateTableCountry(
+          casesCountryModel.globalCasesData[0],
+          stateCountryTable.keyView
+        );
+      }
     });
   }
 );
@@ -78,8 +91,25 @@ document
 [...document.querySelectorAll('.right-container .switch-change')].forEach(
   (item) => {
     item.addEventListener('change', ({ target }) => {
-      // changeCaseSwitch(target, casesGlobalModel.countriesData);
-      // updateTableCountry();
+      changeCaseSwitch(target, stateCountryTable);
+
+      getKeyTotal(
+        stateCountryTable.switchParameterState,
+        stateCountryTable.isSwitchParameterPeriod,
+        stateCountryTable.isSwitchParameterValue
+      );
+
+      if (stateGlobalTable.isClickCountry) {
+        updateTableCountry(
+          stateCountryTable.countryData,
+          stateCountryTable.keyView
+        );
+      } else {
+        updateTableCountry(
+          casesCountryModel.globalCasesData[0],
+          stateCountryTable.keyView
+        );
+      }
     });
   }
 );
@@ -89,11 +119,15 @@ document
   .addEventListener('click', ({ target }) => {
     const countryItem = target.closest('.country-item');
     const countryName = countryItem.querySelector('.country-name').textContent;
-    const countryData = casesGlobalModel.countriesData.find(
+    stateCountryTable.countryData = casesGlobalModel.countriesData.find(
       (item) => item.country === countryName
     );
-    console.log('stateCountryTable.keyView', stateCountryTable.keyView);
-    updateTableCountry(countryData, stateCountryTable.keyView);
+    // console.log('stateCountryTable.keyView', stateCountryTable.keyView);
+    stateGlobalTable.isClickCountry = true;
+    updateTableCountry(
+      stateCountryTable.countryData,
+      stateCountryTable.keyView
+    );
   });
 
 document

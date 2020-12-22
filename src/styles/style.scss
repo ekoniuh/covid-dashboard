@@ -230,11 +230,27 @@ h1 {
   & .stat-table {
     height: auto;
     overflow: inherit;
-    margin-top: 40px;
+    margin-top: 16px;
   }
 
   & .switch-wrap {
     width: 240px;
+  }
+
+  & .country-info {
+    display: flex;
+    justify-content: space-between;
+    width: 130px;
+    margin: 0 auto;
+    & img {
+      width: 40px;
+      height: 24px;
+    }
+    & h3 {
+      color: #ffb340;
+      font-weight: 100;
+      font-family: sans-serif;
+    }
   }
 }
 
