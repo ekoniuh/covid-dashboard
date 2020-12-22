@@ -1,5 +1,5 @@
 // import { doc } from 'prettier';
-import { stateGlobalTable, stateCountryTable } from './state';
+import { stateCountryTable } from './state';
 
 const ONE_HUNDRED_THOUSAND = 100000;
 export function addFieldPerOneHundredThousand(data) {
@@ -49,7 +49,6 @@ function changeKeyValue(statePeople, isPeriod, isValueAbsolute) {
   if (isPeriod === true && isValueAbsolute === true) {
     keyValue = `${statePeople}TodayPerOneHundredThousand`;
     stateCountryTable.keyView = 'TodayPerOneHundredThousand';
-    // console.log('state.keyValue', keyValue);
   }
   if (isPeriod === false && isValueAbsolute === false) {
     keyValue = `${statePeople}`;
@@ -86,7 +85,6 @@ export function getKeyTotal(statePeople, isPeriod, isValueAbsolute) {
 }
 
 export function changeCaseSwitch(target, state) {
-  // document.querySelector('.time-all').click();
   const switchItem = target.closest('.switch-change');
   const dataSwitch = switchItem.dataset.switch;
   const isSwitchActive = switchItem.dataset.active;

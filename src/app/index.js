@@ -23,7 +23,7 @@ function updateTableGlobal() {
 
 casesCountryModel.loadingData.then(() => {
   document
-    .querySelector('.stat-table')
+    .querySelector('.global-info')
     .append(
       casesCountryView.render(
         casesCountryModel.globalCasesData[0],
@@ -34,7 +34,7 @@ casesCountryModel.loadingData.then(() => {
 
 function updateTableCountry(data, key) {
   document
-    .querySelector('.stat-table')
+    .querySelector('.global-info')
     .append(casesCountryView.render(data, key));
 }
 
@@ -119,10 +119,11 @@ document
   .addEventListener('click', ({ target }) => {
     const countryItem = target.closest('.country-item');
     const countryName = countryItem.querySelector('.country-name').textContent;
+
     stateCountryTable.countryData = casesGlobalModel.countriesData.find(
       (item) => item.country === countryName
     );
-    // console.log('stateCountryTable.keyView', stateCountryTable.keyView);
+
     stateGlobalTable.isClickCountry = true;
     updateTableCountry(
       stateCountryTable.countryData,
