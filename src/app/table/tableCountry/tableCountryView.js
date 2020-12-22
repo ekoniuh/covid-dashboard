@@ -1,50 +1,48 @@
 export default class CasesCountryView {
-  // constructor(globalModel) {
-  //   this.globalModel = globalModel;
-  //   this.globalModel.view = this;
-  //   this.viewWrapper = document.createElement('table');
-  //   this.viewWrapper.classList.add('table');
-  // }
-  constructor(countriesData) {
-    this.countriesData = countriesData;
+  constructor() {
+    this.viewWrapper = document.createElement('div');
+    // this.viewWrapper.className = 'stat-table table';
+    this.viewWrapper.className = 'cases-wrap';
   }
 
-  render() {
-    this.viewWrapper.innerHTML = this.buildList();
+  render(casesData, key) {
+    this.viewWrapper.innerHTML = this.buildList(casesData, key);
     return this.viewWrapper;
-    // ${this.buildModeButtons()}
   }
 
-  buildList() {
-    return `<tbody>
-            ${this.globalModel
-              .getCountriesData()
-              .map((item) => this.buildRow(item))}
-            </tbody>`;
+  buildList(casesData, key) {
+    return ` <table class="stat-table table">
+    ${
+      casesData.countryInfo
+        ? this.buildImg(casesData.countryInfo, casesData.country)
+        : ''
+    }
+              ${this.buildHeadTable()}
+            <tbody>
+               <tr>
+									<td class="cases-info">${casesData[`cases${key}`]}</td>
+									<td class="cases-info">${casesData[`deaths${key}`]}</td>
+									<td class="cases-info">${casesData[`recovered${key}`]}</td>
+								</tr>
+            </tbody>
+            </table>`;
   }
 
-  buildRow({ cases, countryInfo, country }) {
-    return `<tr>
-							${this.buildImg(countryInfo, country)}
-							 ${this.buildTotalConfirmed(cases)}
-					  </tr>`;
+  buildHeadTable() {
+    return `<thead>
+          <tr class="table-cases-wrap">
+            <th class="cases-head">Total cases</th>
+              <th class="cases-head">Total deaths</th>
+              <th class="cases-head">Total healed</th>
+          </tr>
+          </thead>
+         `;
   }
 
-  buildImg(CountryCode, country) {
-    return `<td><img src="${countryInfo.flag}">${country}</td>`;
+  buildImg(countryInfo, country) {
+    return `<div class="country-info">
+               <img src="${countryInfo.flag}" alt="">
+               <h3>${country}</h3>
+            </div>`;
   }
-
-  buildTotalConfirmed(total) {
-    return `<td>
-              ${total}
-            </td>`;
-  }
-  // buildModeButtons() {
-  //   return `<button onclick={() => {sort()}}>a</button>
-  // 	<button>a</button><button>a</button>`;
-  // }
-
-  // updateList(data) {
-  //   this.list;
-  // }
 }

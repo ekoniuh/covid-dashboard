@@ -1,11 +1,11 @@
-import state from '../../state';
+import { stateGlobalTable } from '../../state';
 
 export default class CasesGlobalModelView {
   constructor(globalModel) {
     this.globalModel = globalModel;
     this.globalModel.view = this;
     this.viewWrapper = document.createElement('table');
-    this.viewWrapper.classList.add('table');
+    this.viewWrapper.className = 'table global-table';
   }
 
   render() {
@@ -23,14 +23,14 @@ export default class CasesGlobalModelView {
   }
 
   buildRow(item) {
-    return `<tr>
+    return `<tr class="country-item">
 							${this.buildImg(item.countryInfo, item.country)}
-							 ${this.buildTotalConfirmed(item[state.keyValue])}
+							 ${this.buildTotalConfirmed(item[stateGlobalTable.keyValue])}
 					  </tr>`;
   }
 
   buildImg(countryInfo, country) {
-    return `<td><img src="${countryInfo.flag}">${country}</td>`;
+    return `<td><img src="${countryInfo.flag}"><span class="country-name">${country}</span></td>`;
   }
 
   buildTotalConfirmed(keyValue) {

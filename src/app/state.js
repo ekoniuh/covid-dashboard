@@ -1,11 +1,28 @@
-const state = {
+const stateGlobalTable = {
   // switchParameterPeriod: '',
   switchParameterState: 'cases',
   // switchParameterValue: '',
+  isClickCountry: false,
   isSwitchActive: null,
   isSwitchParameterPeriod: false,
   isSwitchParameterValue: false,
   keyValue: 'cases',
 };
 
-export default state;
+const stateCountryTable = {
+  countryData: [],
+  nameCountry: null,
+  keyParameterState: 'cases',
+  keyParameterPeriod: 'deaths',
+  keyParameterValue: 'recovered',
+  keyView: '',
+  // switchParameterValue: '',
+  switchParameterState: '',
+  isSwitchActive: null,
+  isSwitchParameterPeriod: false,
+  isSwitchParameterValue: false,
+  defaultDataGlobal: [],
+
+  // keyValue: 'cases',
+};
+export { stateGlobalTable, stateCountryTable };

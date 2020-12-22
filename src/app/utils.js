@@ -1,8 +1,13 @@
-import state from './state';
+// import { doc } from 'prettier';
+import { stateCountryTable } from './state';
 
 const ONE_HUNDRED_THOUSAND = 100000;
-export function setPerOneHundredThousand(data) {
+export function addFieldPerOneHundredThousand(data) {
   data.forEach((country) => {
+    country.casesToday = country.todayCases;
+    country.deathsToday = country.todayDeaths;
+    country.recoveredToday = country.todayRecovered;
+
     country.casesPerOneHundredThousand = Number(
       Math.round((country.cases / country.population) * ONE_HUNDRED_THOUSAND)
     );
@@ -39,43 +44,47 @@ export function sortData(data, key) {
   data.sort((a, b) => (a[key] < b[key] ? 1 : -1));
 }
 
-function setKeyValue(statePeople, period, valueAbsolute) {
-  if (period === true && valueAbsolute === true) {
-    state.keyValue = `${statePeople}TodayPerOneHundredThousand`;
-    console.log('state.keyValue', state.keyValue);
+function changeKeyValue(statePeople, isPeriod, isValueAbsolute) {
+  let keyValue = '';
+  if (isPeriod === true && isValueAbsolute === true) {
+    keyValue = `${statePeople}TodayPerOneHundredThousand`;
+    stateCountryTable.keyView = 'TodayPerOneHundredThousand';
   }
-  if (period === false && valueAbsolute === false) {
-    state.keyValue = `${statePeople}`;
+  if (isPeriod === false && isValueAbsolute === false) {
+    keyValue = `${statePeople}`;
+    stateCountryTable.keyView = '';
   }
-  if (period === true && valueAbsolute === false) {
-    state.keyValue = `today${
-      statePeople[0].toUpperCase() + statePeople.slice(1)
-    }`;
-    // console.log('state.keyValue', state.keyValue);
+  if (isPeriod === true && isValueAbsolute === false) {
+    keyValue = `${statePeople}Today`;
+    stateCountryTable.keyView = 'Today';
   }
-  if (period === false && valueAbsolute === true) {
-    state.keyValue = `${statePeople}PerOneHundredThousand`;
+  if (isPeriod === false && isValueAbsolute === true) {
+    keyValue = `${statePeople}PerOneHundredThousand`;
+    stateCountryTable.keyView = 'PerOneHundredThousand';
   }
+  return keyValue;
 }
 
-export function getKeyTotal(statePeople, period, valueAbsolute, countriesData) {
+export function getKeyTotal(statePeople, isPeriod, isValueAbsolute) {
   if (statePeople === 'cases') {
-    setKeyValue(statePeople, period, valueAbsolute);
+    return changeKeyValue(statePeople, isPeriod, isValueAbsolute);
   }
 
   if (statePeople === 'deaths') {
-    setKeyValue(statePeople, period, valueAbsolute);
+    return changeKeyValue(statePeople, isPeriod, isValueAbsolute);
   }
 
   if (statePeople === 'recovered') {
-    setKeyValue(statePeople, period, valueAbsolute);
+    return changeKeyValue(statePeople, isPeriod, isValueAbsolute);
+  }
+  if (!statePeople) {
+    return changeKeyValue(statePeople, isPeriod, isValueAbsolute);
   }
 
-  sortData(countriesData, state.keyValue);
-  return state.keyValue;
+  return '';
 }
 
-export function changeCaseSwitch(target, countriesData) {
+export function changeCaseSwitch(target, state) {
   const switchItem = target.closest('.switch-change');
   const dataSwitch = switchItem.dataset.switch;
   const isSwitchActive = switchItem.dataset.active;
@@ -101,11 +110,17 @@ export function changeCaseSwitch(target, countriesData) {
       break;
     default:
   }
+}
 
-  getKeyTotal(
-    state.switchParameterState,
-    state.isSwitchParameterPeriod,
-    state.isSwitchParameterValue,
-    countriesData
-  );
+export function searchCountry() {
+  const input = document.getElementById('input-search');
+  const filter = input.value.toUpperCase();
+  const countryArray = [...document.querySelectorAll('.country-item')];
+  [...document.querySelectorAll('.country-name')].forEach((country, index) => {
+    if (country.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      countryArray[index].classList.remove('country-item--none');
+    } else {
+      countryArray[index].classList.add('country-item--none');
+    }
+  });
 }
