@@ -6,6 +6,12 @@ export default class GraphView {
   }
 
   render(key) {
+    document.querySelector('.canvas-container').innerHTML = '';
+    const canvas = document.createElement('canvas');
+    canvas.className = 'canvas-graph popChart';
+    document.querySelector('.canvas-container').append(canvas);
+    // const popCanvas = document.getElementById('popChart');
+
     const styleData = {
       type: 'bar',
       backgroundColor: 'red',
@@ -15,20 +21,20 @@ export default class GraphView {
         labels: [],
         datasets: [
           {
-            data: [], 
+            data: [],
             backgroundColor: '#5bfff7',
           },
         ],
       },
     };
     styleData.data.labels = this.dataGraph[`${key}`].date;
-    console.log('this.dataGraph[${key}].value', this.dataGraph[`${key}`].value);
+    // console.log('this.dataGraph[${key}].value', this.dataGraph[`${key}`].value);
     styleData.data.datasets[0].data = this.dataGraph[`${key}`].value;
+    const barChart = new Chart(canvas, styleData);
 
     // objdata.data.labels = dataGraph.cases.value;
     // objdata.data.datasets.data = dataGraph.cases.date;
     // Chart.defaults.global.defaultBackgroundColor = 'blue';
-    const barChart = new Chart(this.canvas, styleData);
     // console.log('dataGraph.cases', dataGraph.cases);
     // console.log('dataGraph.cases.value', dataGraph.cases.value);
     // const datat = dataGraph.cases;
@@ -36,36 +42,3 @@ export default class GraphView {
     // console.log('dataGraph.cases.date', dataGraph.cases.date);
   }
 }
-
-// const objsadasd = new Chart(popCanvas,{
-// type: 'bar',
-// data: {
-//   labels: [
-//     'China',
-//     'India',
-//     'United States',
-//     'Indonesia',
-//     'Brazil',
-//     'Pakistan',
-//     'Nigeria',
-//     'Bangladesh',
-//     'Russia',
-//     'Japan',
-//   ],
-//   datasets: [
-//     {
-//       data: [
-//         1379302771,
-//         1281935911,
-//         326625791,
-//         260580739,
-//         207353391,
-//         204924861,
-//         190632261,
-//         157826578,
-//         142257519,
-//         126451398,
-//       ],
-//     },
-//   ],
-// }}

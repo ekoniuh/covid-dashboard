@@ -12,14 +12,18 @@ export default class GraphModel {
   }
 
   async fetchDataGraph() {
-    const link = 'https://disease.sh/v3/covid-19/historical/all?lastdays=100';
+    const link = 'https://disease.sh/v3/covid-19/historical/all?lastdays=300';
+    // const link1 = 'https://disease.sh/v3/covid-19/historical/';
     try {
       const summaryPerDate = await fetch(link);
       this.apiAnswer = await summaryPerDate.json();
-      console.log(this.apiAnswer.cases);
+
+      const summaryPerDate1 = await fetch(link1);
+      this.apiAnswer1 = await summaryPerDate1.json();
       this.getDataWorld(this.apiAnswer);
+      console.log('apiAnswer', this.apiAnswer1);
       // console.log('apiAnswer', this.apiAnswer);
-      console.log('dataGraph- ', dataGraph);
+      // console.log('dataGraph- ', dataGraph);
     } catch (error) {
       console.log(error);
     }

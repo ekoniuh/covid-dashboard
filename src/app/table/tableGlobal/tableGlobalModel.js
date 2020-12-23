@@ -20,7 +20,7 @@ export default class CasesGlobalModel {
   getCountriesData() {
     if (this.countriesData) {
       sortData(this.countriesData, stateGlobalTable.keyValue);
-      console.log(this.countriesData);
+      // console.log(this.countriesData);
     }
     return this.countriesData.filter((item) => {
       if (item.country === 'MS Zaandam') {
