@@ -17,7 +17,7 @@ export default class CasesCountryModel {
         'https://disease.sh/v3/covid-19/all'
       );
       this.globalCasesData[0] = await globalDataResponse.json();
-
+     
       addFieldPerOneHundredThousand(this.globalCasesData);
     } catch (error) {
       console.log(error);

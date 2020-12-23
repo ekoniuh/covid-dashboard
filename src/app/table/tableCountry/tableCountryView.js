@@ -1,7 +1,6 @@
 export default class CasesCountryView {
   constructor() {
     this.viewWrapper = document.createElement('div');
-    // this.viewWrapper.className = 'stat-table table';
     this.viewWrapper.className = 'cases-wrap';
   }
 

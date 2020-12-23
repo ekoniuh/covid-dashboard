@@ -124,3 +124,17 @@ export function searchCountry() {
     }
   });
 }
+
+function getDataToday() {
+  return new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+}
+
+export function createWindowGlobalTotal(data) {
+  return `
+					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+          <h2 class="global-title">TOTAL CASES</h2>
+          <span class="total-count">${data}</span>
+					<span class="total-data">${getDataToday()}</span>
+			
+  `;
+}
