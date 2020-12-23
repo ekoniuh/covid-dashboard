@@ -4,6 +4,7 @@ import CasesGlobalModelView from './table/tableGlobal/tableGlobalView';
 import CasesCountryModel from './table/tableCountry/tableCountryModel';
 import CasesCountryView from './table/tableCountry/tableCountryView';
 import { stateGlobalTable, stateCountryTable } from './state';
+import Keyboard from './virtualKeyBoard/virtualKeyBoard';
 import {
   getKeyTotal,
   changeCaseSwitch,
@@ -11,11 +12,14 @@ import {
   searchCountry,
 } from './utils';
 
+
 const casesGlobalModel = new CasesGlobalModel();
 const casesGlobalModelView = new CasesGlobalModelView(casesGlobalModel);
 
 const casesCountryModel = new CasesCountryModel();
 const casesCountryView = new CasesCountryView();
+
+const keyBoard = new Keyboard();
 
 function updateTableGlobal() {
   document.querySelector('.country-wrap').append(casesGlobalModelView.render());
@@ -134,3 +138,7 @@ document
 document
   .getElementById('input-search')
   .addEventListener('keyup', () => searchCountry());
+
+window.addEventListener('DOMContentLoaded', () => {
+  keyBoard.init();
+});
