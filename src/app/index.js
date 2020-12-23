@@ -3,6 +3,8 @@ import CasesGlobalModel from './table/tableGlobal/tableGlobalModel';
 import CasesGlobalModelView from './table/tableGlobal/tableGlobalView';
 import CasesCountryModel from './table/tableCountry/tableCountryModel';
 import CasesCountryView from './table/tableCountry/tableCountryView';
+import GraphView from './graph/graphView';
+import GraphModel from './graph/graphModel';
 import { stateGlobalTable, stateCountryTable } from './state';
 import Keyboard from './virtualKeyBoard/virtualKeyBoard';
 import {
@@ -11,7 +13,12 @@ import {
   sortData,
   searchCountry,
 } from './utils';
+import dataGraph from '../data/objectDataWorld';
 
+// console.log(dataGraph, 'dataGraphFETCH');
+// const graphView = new GraphView();
+// console.log(graphView.apiAnswer);
+const popCanvas = document.getElementById('popChart');
 
 const casesGlobalModel = new CasesGlobalModel();
 const casesGlobalModelView = new CasesGlobalModelView(casesGlobalModel);
@@ -24,6 +31,13 @@ const keyBoard = new Keyboard();
 function updateTableGlobal() {
   document.querySelector('.country-wrap').append(casesGlobalModelView.render());
 }
+
+const graphModel = new GraphModel();
+const graphView = new GraphView(popCanvas, dataGraph);
+
+graphModel.loadingData.then(() =>
+  graphView.render(stateGlobalTable.switchParameterState)
+);
 
 casesCountryModel.loadingData.then(() => {
   document
@@ -57,7 +71,7 @@ document
     updateTableGlobal();
   });
 
-[...document.querySelectorAll('.left-container .switch-change')].forEach(
+[...document.querySelectorAll('.global-info__switch')].forEach(
   (item) => {
     item.addEventListener('change', ({ target }) => {
       changeCaseSwitch(target, stateGlobalTable);
@@ -92,7 +106,7 @@ document
   });
 });
 
-[...document.querySelectorAll('.right-container .switch-change')].forEach(
+[...document.querySelectorAll('.country-info__switch')].forEach(
   (item) => {
     item.addEventListener('change', ({ target }) => {
       changeCaseSwitch(target, stateCountryTable);
@@ -142,3 +156,6 @@ document
 window.addEventListener('DOMContentLoaded', () => {
   keyBoard.init();
 });
+
+// Chart.defaults.global.defaultFontColor = 'blue';
+// Chart.defaults.global.defaultBackGroundColor = 'blue';

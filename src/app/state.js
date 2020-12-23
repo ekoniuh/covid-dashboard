@@ -25,4 +25,8 @@ const stateCountryTable = {
 
   // keyValue: 'cases',
 };
+
+const objDataWord = {
+  
+}
 export { stateGlobalTable, stateCountryTable };

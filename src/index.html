@@ -8,7 +8,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet"> -->
 	<!-- <link rel="shortcut icon" href="assets/favicon.ico"> -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+		integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+		crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<title>covid-dashboard</title>
 
 </head>
@@ -39,12 +42,14 @@
 						<div class="switch-wrap">
 							<label class="switch switch-time-all">
 
-								<input type="checkbox" class="switch-change time-all" data-switch-active="false" data-switch="time-all">
+								<input type="checkbox" class="switch-change time-all global-info__switch" data-switch-active="false"
+									data-switch="time-all">
 								<span class="slider"></span>
 							</label>
 							<label class="switch switch-absolute-value">
 
-								<input type="checkbox" class="switch-change" data-switch-active="false" data-switch="absolute-value">
+								<input type="checkbox" class="switch-change global-info__switch" data-switch-active="false"
+									data-switch="absolute-value">
 								<span class="slider"></span>
 							</label>
 						</div>
@@ -90,7 +95,7 @@
 							<div class="time-wrap head__title">
 								<h4>Total all/today</h4>
 								<label class="switch switch-time-all">
-									<input type="checkbox" class="switch-change time-all" data-switch-active="false"
+									<input type="checkbox" class="switch-change time-all country-info__switch" data-switch-active="false"
 										data-switch="time-all">
 									<span class="slider"></span>
 								</label>
@@ -98,7 +103,8 @@
 							<div class="absolute-value-wrap head__title">
 								<h4>Population/100 000</h4>
 								<label class="switch switch-absolute-value">
-									<input type="checkbox" class="switch-change" data-switch-active="false" data-switch="absolute-value">
+									<input type="checkbox" class="switch-change  country-info__switch" data-switch-active="false"
+										data-switch="absolute-value">
 									<span class="slider"></span>
 								</label>
 							</div>
@@ -119,7 +125,43 @@
 					<!-- </div> -->
 				</div>
 				<div class="graph-container box-shadow full-screen__btn-relative">
+					<div class="graph-control__wrap">
+
+						<div class="head-info">
+
+							<div class="head__title">
+								<h4>Total all/today</h4>
+								<h4>Population/100 000</h4>
+							</div>
+
+							<div class="switch-wrap">
+								<label class="switch switch-time-all">
+
+									<input type="checkbox" class="switch-change time-all global-info__switch" data-switch-active="false"
+										data-switch="time-all">
+									<span class="slider"></span>
+								</label>
+								<label class="switch switch-absolute-value">
+
+									<input type="checkbox" class="switch-change global-info__switch" data-switch-active="false"
+										data-switch="absolute-value">
+									<span class="slider"></span>
+								</label>
+							</div>
+							<select class="select-parameter">
+								<option class="table-point" value="cases">Total cases</option>
+								<option class="table-point" value="deaths">Total deaths</option>
+								<option class="table-point" value="recovered">Total recovered</option>
+							</select>
+						</div>
+					</div>
 					<img src="https://www.flaticon.com/svg/static/icons/svg/456/456311.svg" alt="" class="full-screen__btn">
+					<div class="canvas-container">
+						<canvas class="canvas-graph popChart" id="popChart">
+
+						</canvas>
+					</div>
+
 				</div>
 			</div>
 		</div>
