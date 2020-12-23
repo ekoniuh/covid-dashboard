@@ -18,7 +18,7 @@ export default class GraphModel {
       const summaryPerDate = await fetch(link);
       this.apiAnswer = await summaryPerDate.json();
 
-      const summaryPerDate1 = await fetch(link1);
+//       const summaryPerDate1 = await fetch(link1);
 //       this.apiAnswer1 = await summaryPerDate1.json();
 //       this.getDataWorld(this.apiAnswer);
 //       console.log('apiAnswer', this.apiAnswer1);
