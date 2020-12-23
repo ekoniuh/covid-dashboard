@@ -12,12 +12,10 @@ import {
   changeCaseSwitch,
   sortData,
   searchCountry,
+  createWindowGlobalTotal,
 } from './utils';
 import dataGraph from '../data/objectDataWorld';
 
-// console.log(dataGraph, 'dataGraphFETCH');
-// const graphView = new GraphView();
-// console.log(graphView.apiAnswer);
 const popCanvas = document.getElementById('popChart');
 
 const casesGlobalModel = new CasesGlobalModel();
@@ -28,15 +26,28 @@ const casesCountryView = new CasesCountryView();
 
 const keyBoard = new Keyboard();
 
+const graphModel = new GraphModel(dataGraph);
+// const graphView = new GraphView(popCanvas, dataGraph);
+const graphView = new GraphView(popCanvas, dataGraph);
+
 function updateTableGlobal() {
   document.querySelector('.country-wrap').append(casesGlobalModelView.render());
 }
 
-const graphModel = new GraphModel();
-const graphView = new GraphView(popCanvas, dataGraph);
+function updateTableCountry(data, key) {
+  document
+    .querySelector('.global-info')
+    .append(casesCountryView.render(data, key));
+}
+
+// function updateGraph(data, key) {
+//   document
+//     .querySelector('.global-info')
+//     .append(graphView.render(key));
+// }
 
 graphModel.loadingData.then(() =>
-  graphView.render(stateGlobalTable.switchParameterState)
+  graphView.render(stateGlobalTable.switchParameterState, graphModel.dataGraph)
 );
 
 casesCountryModel.loadingData.then(() => {
@@ -48,13 +59,11 @@ casesCountryModel.loadingData.then(() => {
         stateCountryTable.keyView
       )
     );
-});
 
-function updateTableCountry(data, key) {
-  document
-    .querySelector('.global-info')
-    .append(casesCountryView.render(data, key));
-}
+  document.querySelector('.global-data').innerHTML = createWindowGlobalTotal(
+    casesCountryModel.globalCasesData[0].cases
+  );
+});
 
 updateTableGlobal();
 
@@ -69,6 +78,7 @@ document
       stateGlobalTable.isSwitchParameterValue
     );
     updateTableGlobal();
+    graphView.render(stateGlobalTable.switchParameterState, dataGraph);
   });
 
 document
@@ -77,7 +87,7 @@ document
     stateGlobalTable.switchParameterState = target.value;
     // document.querySelector('.canvas-container').innerHTML = '';
 
-    graphView.render(stateGlobalTable.switchParameterState);
+    graphView.render(stateGlobalTable.switchParameterState, dataGraph);
   });
 
 [...document.querySelectorAll('.global-info__switch')].forEach((item) => {
@@ -104,6 +114,8 @@ document
         stateCountryTable.keyView
       );
     }
+
+    graphView.render(stateGlobalTable.switchParameterState, dataGraph);
   });
 });
 
@@ -139,7 +151,7 @@ document
 
 document
   .querySelector('.global-table')
-  .addEventListener('click', ({ target }) => {
+  .addEventListener('click', async ({ target }) => {
     const countryItem = target.closest('.country-item');
     const countryName = countryItem.querySelector('.country-name').textContent;
 
@@ -152,7 +164,29 @@ document
       stateCountryTable.countryData,
       stateCountryTable.keyView
     );
+    console.log(countryName);
+    await graphModel.fetchDataCountry(countryName);
+    // console.log('graphModel.dataGraph', graphModel.dataGraph);
+    graphView.render(
+      stateGlobalTable.switchParameterState,
+      graphModel.dataGraph
+    );
   });
+
+[...document.querySelectorAll('.graph-info__switch')].forEach((item) => {
+  item.addEventListener('change', ({ target }) => {
+    // changeCaseSwitch(target, stateGraph);
+    // getKeyTotal(
+    //   stateCountryTable.switchParameterState,
+    //   stateCountryTable.isSwitchParameterPeriod,
+    //   stateCountryTable.isSwitchParameterValue
+    // );
+    // graphView.render(
+    //   stateGlobalTable.switchParameterState,
+    //   graphModel.dataGraph
+    // );
+  });
+});
 
 // document
 //   .querySelector('.global-table')
