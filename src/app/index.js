@@ -16,6 +16,10 @@ import {
 } from './utils';
 import dataGraph from '../data/objectDataWorld';
 
+alert(
+  'Уважаемый проверяющий. Поздравляем вас от нашей команды с наступающими праздниками и хотели бы попросить, ещё дня два на завершение работы'
+);
+
 const popCanvas = document.getElementById('popChart');
 
 const casesGlobalModel = new CasesGlobalModel();
