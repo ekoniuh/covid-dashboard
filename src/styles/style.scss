@@ -74,9 +74,19 @@ h1 {
 .center-container {
   width: 60%;
   height: 100%;
+  & .full-screen__btn {
+    z-index: 3;
+    top: 1px;
+    right: 1px;
+  }
+}
+
+.center-container.box-shadow {
+  z-index: 2;
 }
 
 .box-shadow {
+  z-index: 1;
   box-shadow: 0 0 8px #ffffff85;
   border-radius: 7px;
   border: 1px solid #983f3f;
@@ -130,6 +140,7 @@ h1 {
 .country-wrap {
   height: 82%;
   // padding: 10px 0;
+
   & .head-info {
     flex-direction: column;
   }
@@ -141,6 +152,7 @@ h1 {
 }
 
 .head-info {
+  z-index: 2;
   margin-top: 11px;
   padding: 10px;
   width: 100%;
@@ -293,8 +305,30 @@ h1 {
 .canvas-graph {
   position: absolute;
   bottom: 0;
-  max-height: 240px !important;
+  max-height: 250px !important;
   // height: 225px !important;
+}
+
+.full-screen__active .canvas-graph {
+  max-height: 600px !important;
+}
+
+.global-info.full-screen__active .switch-wrap {
+  flex-direction: row;
+  width: 350px;
+}
+.global-info.full-screen__active,
+.country-wrap.full-screen__active {
+  z-index: 3;
+}
+
+.full-screen__active .cases-wrap {
+  width: 300px;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
 }
 
 .graph-control__wrap {
@@ -445,7 +479,59 @@ h1 {
     height: 86%;
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 967px) {
+  .left-container {
+    width: 100%;
+    height: 600px;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .global-data {
+    height: 100px;
+  }
+
+  .country-wrap {
+    width: 230px;
+  }
+
+  .left-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .right-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    height: 770px;
+  }
+
+  .global-info {
+    margin-bottom: 22px;
+    height: 325px;
+    width: 50%;
+  }
+
+  .graph-container {
+    height: 400px;
+    width: 100%;
+  }
+
+  .search-country {
+    position: fixed;
+    top: 10;
+    right: 10;
+    z-index: 2;
+  }
+
+  .left-container .global-table {
+    height: 485px;
+  }
+
+  .footer {
+    z-index: 1;
+  }
 }
 
 @media screen and (max-width: 500px) {

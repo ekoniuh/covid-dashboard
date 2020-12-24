@@ -13,19 +13,34 @@ export default class GraphView {
     canvas.className = 'canvas-graph popChart';
     document.querySelector('.canvas-container').append(canvas);
 
+    // options: {
+    //   yAxes: [
+    //     {
+    //       ticks: {
+    //         callback: (value) => `${value / 10e6}M`,
+    //       },
+    //     },
+    //   ],
+    // },
     const styleData = {
       type: 'bar',
+
       backgroundColor: 'red',
       clip: { left: 50, top: false, right: -2, bottom: 0 },
 
       data: {
-        labels: [],
+        // labels: ['total'],
         datasets: [
           {
             data: [],
             backgroundColor: '#5bfff7',
           },
         ],
+      },
+      options: {
+        legend: {
+          display: false,
+        },
       },
     };
     styleData.data.labels = dataGraph[`${key}`].date;
