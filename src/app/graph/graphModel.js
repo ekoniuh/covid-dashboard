@@ -1,5 +1,5 @@
 // import dataGraph from '../../data/objectDataWorld';
-import { addFieldDailyDataGraph } from '../utils';
+import { addFieldCountryDailyDataGraph } from '../utils';
 
 export default class GraphModel {
   constructor(dataGraph) {
@@ -49,8 +49,9 @@ export default class GraphModel {
       // console.log('dataTimeAll', this.dataTimeAll);
       this.getDataWorld(this.dataTimeAll.timeline);
 
-      // addFieldDailyDataGraph(this.dataGraph);
-      console.log('apiAnswer', this.dataGraph);
+      // console.log('addFieldCountryDailyDataGraph', this.dataGraph);
+      // addFieldCountryDailyDataGraph(this.dataGraph);
+      // console.log('после', this.dataGraph);
     } catch (error) {
       console.log(error);
     }

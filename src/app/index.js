@@ -15,13 +15,12 @@ import {
   createWindowGlobalTotal,
   addFieldCountryDailyDataGraph,
 } from './utils';
+import MapView from './map/mapView';
 
 import dataGraph from '../data/objectDataWorld';
 
-alert(
-  'Уважаемый проверяющий. Поздравляем вас от нашей команды с наступающими праздниками и хотели бы попросить, ещё дня два на завершение работы'
-);
-
+const mapView = new MapView();
+mapView.render();
 const popCanvas = document.getElementById('popChart');
 
 const casesGlobalModel = new CasesGlobalModel();
@@ -104,7 +103,7 @@ document
   });
 
 [...document.querySelectorAll('.global-info__switch')].forEach((item) => {
-  item.addEventListener('change', ({ target }) => {
+  item.addEventListener('change', async ({ target }) => {
     changeCaseSwitch(target, stateGlobalTable);
 
     stateGlobalTable.keyValue = getKeyTotal(
@@ -127,6 +126,17 @@ document
         stateCountryTable.keyView
       );
     }
+    // console.log(
+    //   'casesCountryModel.globalCasesData[0]',
+    //   casesCountryModel.globalCasesData[0].population
+    // );
+    await graphModel.fetchDataCountry('all');
+    console.log('object', graphModel.dataGraph);
+    addFieldCountryDailyDataGraph(
+      graphModel.dataGraph,
+      casesCountryModel.globalCasesData[0].population
+    );
+
     graphView.render(stateGlobalTable.keyValue, graphModel.dataGraph);
   });
 });
@@ -183,7 +193,7 @@ document
 
     addFieldCountryDailyDataGraph(graphModel.dataGraph, populationCountry);
 
-    console.log('graphModel.dataGraph', graphModel.dataGraph);
+    // console.log('graphModel.dataGraph', graphModel.dataGraph);
     graphView.render(stateGlobalTable.keyValue, graphModel.dataGraph);
   });
 
