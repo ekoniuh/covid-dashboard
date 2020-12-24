@@ -5,7 +5,7 @@ import CasesCountryModel from './table/tableCountry/tableCountryModel';
 import CasesCountryView from './table/tableCountry/tableCountryView';
 import GraphView from './graph/graphView';
 import GraphModel from './graph/graphModel';
-import { stateGlobalTable, stateCountryTable } from './state';
+import { stateGlobalTable, stateCountryTable, stateGraph } from './state';
 import Keyboard from './virtualKeyBoard/virtualKeyBoard';
 import {
   getKeyTotal,
@@ -13,8 +13,14 @@ import {
   sortData,
   searchCountry,
   createWindowGlobalTotal,
+  addFieldCountryDailyDataGraph,
 } from './utils';
+
 import dataGraph from '../data/objectDataWorld';
+
+alert(
+  'Уважаемый проверяющий. Поздравляем вас от нашей команды с наступающими праздниками и хотели бы попросить, ещё дня два на завершение работы'
+);
 
 const popCanvas = document.getElementById('popChart');
 
@@ -78,16 +84,23 @@ document
       stateGlobalTable.isSwitchParameterValue
     );
     updateTableGlobal();
-    graphView.render(stateGlobalTable.switchParameterState, dataGraph);
+    graphView.render(
+      stateGlobalTable.switchParameterState,
+      graphModel.dataGraph
+    );
   });
 
 document
   .querySelector('.graph-container .select-parameter')
   .addEventListener('change', ({ target }) => {
-    stateGlobalTable.switchParameterState = target.value;
-    // document.querySelector('.canvas-container').innerHTML = '';
-
-    graphView.render(stateGlobalTable.switchParameterState, dataGraph);
+    stateGraph.switchParameterState = target.value;
+    // changeCaseSwitch(target, stateGraph);
+    stateGraph.keyView = getKeyTotal(
+      stateGraph.switchParameterState,
+      stateGraph.isSwitchParameterPeriod,
+      stateGraph.isSwitchParameterValue
+    );
+    graphView.render(stateGraph.keyView, graphModel.dataGraph);
   });
 
 [...document.querySelectorAll('.global-info__switch')].forEach((item) => {
@@ -114,8 +127,7 @@ document
         stateCountryTable.keyView
       );
     }
-
-    graphView.render(stateGlobalTable.switchParameterState, dataGraph);
+    graphView.render(stateGlobalTable.keyValue, graphModel.dataGraph);
   });
 });
 
@@ -155,50 +167,37 @@ document
     const countryItem = target.closest('.country-item');
     const countryName = countryItem.querySelector('.country-name').textContent;
 
+    stateGlobalTable.isClickCountry = true;
     stateCountryTable.countryData = casesGlobalModel.countriesData.find(
       (item) => item.country === countryName
     );
-
-    stateGlobalTable.isClickCountry = true;
     updateTableCountry(
       stateCountryTable.countryData,
       stateCountryTable.keyView
     );
-    console.log(countryName);
+
     await graphModel.fetchDataCountry(countryName);
-    // console.log('graphModel.dataGraph', graphModel.dataGraph);
-    graphView.render(
-      stateGlobalTable.switchParameterState,
-      graphModel.dataGraph
-    );
+
+    const populationCountry = stateCountryTable.countryData.population;
+    // console.log('populitionCointry', populationCountry);
+
+    addFieldCountryDailyDataGraph(graphModel.dataGraph, populationCountry);
+
+    console.log('graphModel.dataGraph', graphModel.dataGraph);
+    graphView.render(stateGlobalTable.keyValue, graphModel.dataGraph);
   });
 
 [...document.querySelectorAll('.graph-info__switch')].forEach((item) => {
   item.addEventListener('change', ({ target }) => {
-    // changeCaseSwitch(target, stateGraph);
-    // getKeyTotal(
-    //   stateCountryTable.switchParameterState,
-    //   stateCountryTable.isSwitchParameterPeriod,
-    //   stateCountryTable.isSwitchParameterValue
-    // );
-    // graphView.render(
-    //   stateGlobalTable.switchParameterState,
-    //   graphModel.dataGraph
-    // );
+    changeCaseSwitch(target, stateGraph);
+    stateGraph.keyView = getKeyTotal(
+      stateGraph.switchParameterState,
+      stateGraph.isSwitchParameterPeriod,
+      stateGraph.isSwitchParameterValue
+    );
+    graphView.render(stateGraph.keyView, graphModel.dataGraph);
   });
 });
-
-// document
-//   .querySelector('.global-table')
-//   .addEventListener('click', ({ target }) => {
-
-//     // stateCountryTable.countryData = casesGlobalModel.countriesData.find(
-//     //   (item) => item.country === countryName
-//     // );
-
-//     // stateGlobalTable.isClickCountry = true;
-
-//   });
 
 document
   .getElementById('input-search')
@@ -207,6 +206,3 @@ document
 window.addEventListener('DOMContentLoaded', () => {
   keyBoard.init();
 });
-
-// Chart.defaults.global.defaultFontColor = 'blue';
-// Chart.defaults.global.defaultBackGroundColor = 'blue';

@@ -305,6 +305,11 @@ h1 {
   align-items: center;
 }
 
+.graph-switch .head__title {
+  flex-direction: row;
+  width: 261px;
+}
+
 @media screen and (max-width: 1200px) {
   .main {
     height: 88%;
@@ -416,6 +421,9 @@ h1 {
         display: flex;
         flex-direction: column;
       }
+    }
+    .graph-switch .switch-wrap {
+      flex-direction: row;
     }
   }
 

@@ -26,7 +26,21 @@ const stateCountryTable = {
   // keyValue: 'cases',
 };
 
-const objDataWord = {
-  
-}
-export { stateGlobalTable, stateCountryTable };
+const stateGraph = {
+  countryData: [],
+  nameCountry: null,
+  keyParameterState: 'cases',
+  keyParameterPeriod: 'deaths',
+  keyParameterValue: 'recovered',
+  keyView: '',
+  // switchParameterValue: '',
+  switchParameterState: 'cases',
+  isSwitchActive: null,
+  isSwitchParameterPeriod: false,
+  isSwitchParameterValue: false,
+  defaultDataGlobal: [],
+
+  // keyValue: 'cases',
+};
+
+export { stateGlobalTable, stateCountryTable, stateGraph };
