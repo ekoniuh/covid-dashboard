@@ -1,5 +1,3 @@
-// import { doc } from 'prettier';
-import FileLoader from 'file-loader';
 import { stateCountryTable } from './state';
 
 const ONE_HUNDRED_THOUSAND = 100000;
@@ -9,7 +7,7 @@ export function addFieldPerOneHundredThousand(data) {
     country.casesToday = country.todayCases;
     country.deathsToday = country.todayDeaths;
     country.recoveredToday = country.todayRecovered;
-
+  
     country.casesPerOneHundredThousand = Number(
       Math.round((country.cases / country.population) * ONE_HUNDRED_THOUSAND)
     );
@@ -87,7 +85,6 @@ export function addFieldCountryDailyDataGraph(data, population) {
       addStatisticCountryPerOneHundredThousand(key, data, population);
     }
   });
-  console.log('data.recoveredToday.value', data);
 }
 
 export function sortData(data, key) {

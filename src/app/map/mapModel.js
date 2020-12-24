@@ -1,3 +1,3 @@
-export default class MapModel {
+// export default class MapModel {
 	
-}
+// }

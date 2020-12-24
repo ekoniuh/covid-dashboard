@@ -1,4 +1,3 @@
-// import CasesTableView from './tableView';
 import { addFieldPerOneHundredThousand } from '../../utils';
 
 export default class CasesCountryModel {
@@ -17,7 +16,6 @@ export default class CasesCountryModel {
         'https://disease.sh/v3/covid-19/all'
       );
       this.globalCasesData[0] = await globalDataResponse.json();
-      console.log('globalCasesData', this.globalCasesData[0]);
       addFieldPerOneHundredThousand(this.globalCasesData);
     } catch (error) {
       console.log(error);
