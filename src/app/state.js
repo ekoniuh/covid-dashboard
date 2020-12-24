@@ -1,7 +1,5 @@
 const stateGlobalTable = {
-  // switchParameterPeriod: '',
   switchParameterState: 'cases',
-  // switchParameterValue: '',
   isClickCountry: false,
   isSwitchActive: null,
   isSwitchParameterPeriod: false,
@@ -16,14 +14,12 @@ const stateCountryTable = {
   keyParameterPeriod: 'deaths',
   keyParameterValue: 'recovered',
   keyView: '',
-  // switchParameterValue: '',
   switchParameterState: '',
   isSwitchActive: null,
   isSwitchParameterPeriod: false,
   isSwitchParameterValue: false,
   defaultDataGlobal: [],
 
-  // keyValue: 'cases',
 };
 
 const stateGraph = {
@@ -33,14 +29,12 @@ const stateGraph = {
   keyParameterPeriod: 'deaths',
   keyParameterValue: 'recovered',
   keyView: '',
-  // switchParameterValue: '',
   switchParameterState: 'cases',
   isSwitchActive: null,
   isSwitchParameterPeriod: false,
   isSwitchParameterValue: false,
   defaultDataGlobal: [],
 
-  // keyValue: 'cases',
 };
 
 export { stateGlobalTable, stateCountryTable, stateGraph };
