@@ -1,7 +1,9 @@
 // import { doc } from 'prettier';
+import FileLoader from 'file-loader';
 import { stateCountryTable } from './state';
 
 const ONE_HUNDRED_THOUSAND = 100000;
+
 export function addFieldPerOneHundredThousand(data) {
   data.forEach((country) => {
     country.casesToday = country.todayCases;
@@ -38,6 +40,54 @@ export function addFieldPerOneHundredThousand(data) {
       ).toFixed(3)
     );
   });
+}
+
+function addDailyStatisticCases(key, data) {
+  data[key].value.forEach((total, index) => {
+    if (index + 1 !== data.length) {
+      data[`${key}Today`].value[index] = Math.abs(
+        data[key].value[index + 1] - total
+      );
+    }
+  });
+  data[`${key}Today`].date = data[key].date;
+  data[`${key}Today`].value.pop();
+  data[`${key}Today`].date.pop();
+}
+
+function addStatisticCountryPerOneHundredThousand(key, data, population) {
+  data[key].value.forEach((total, index) => {
+    data[`${key}PerOneHundredThousand`].value[index] = Number(
+      Math.round((total / population) * ONE_HUNDRED_THOUSAND).toFixed(3)
+    );
+  });
+  data[`${key}PerOneHundredThousand`].date = data[key].date;
+  data[`${key}Today`].value.forEach((total, index) => {
+    data[`${key}TodayPerOneHundredThousand`].value[index] = Number(
+      Math.round((total / population) * ONE_HUNDRED_THOUSAND).toFixed(3)
+    );
+  });
+  data[`${key}TodayPerOneHundredThousand`].date = data[key].date;
+}
+
+export function addFieldCountryDailyDataGraph(data, population) {
+  Object.keys(data).forEach((key) => {
+    if (key === 'cases') {
+      addDailyStatisticCases(key, data);
+      addStatisticCountryPerOneHundredThousand(key, data, population);
+    }
+
+    if (key === 'deaths') {
+      addDailyStatisticCases(key, data);
+      addStatisticCountryPerOneHundredThousand(key, data, population);
+    }
+
+    if (key === 'recovered') {
+      addDailyStatisticCases(key, data);
+      addStatisticCountryPerOneHundredThousand(key, data, population);
+    }
+  });
+  console.log('data.recoveredToday.value', data);
 }
 
 export function sortData(data, key) {

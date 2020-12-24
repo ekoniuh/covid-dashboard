@@ -1,8 +1,10 @@
-import dataGraph from '../../data/objectDataWorld';
+// import dataGraph from '../../data/objectDataWorld';
+import { addFieldDailyDataGraph } from '../utils';
 
 export default class GraphModel {
   constructor(dataGraph) {
     this.dataGraph = dataGraph;
+    // console.log('object', this.dataGraph);
     this.apiAnswer = {};
     this.dataTimeAll = null;
     this.loadingData = this.initData();
@@ -30,7 +32,6 @@ export default class GraphModel {
   }
 
   async fetchDataCountry(nameCountry) {
-    console.log('name', nameCountry);
     const urlTimeAll = `https://disease.sh/v3/covid-19/historical/${nameCountry}?lastdays=366`;
     // const urlDaily = `https://disease.sh/v3/covid-19/historical/${nameCountry}?lastdays=366`;
     try {
@@ -39,11 +40,17 @@ export default class GraphModel {
 
       // const dataDaily = await fetch(urlDaily);
       // this.dataDaily = await dataDaily.json();
+      // this.countryBel = this.countriesData.filter(
+      //   (item) => item.country === 'Belarus'
+      // )[0].population;
+      // console.log('this.countryBel', this.countryBel);
 
       // console.log('apiAnswer', this.dataTimeAll.timelines);
-      // console.log('apiAnswer', this.dataDaily);
+      // console.log('dataTimeAll', this.dataTimeAll);
       this.getDataWorld(this.dataTimeAll.timeline);
-      // console.log('apiAnswer', this.dataGraph);
+
+      // addFieldDailyDataGraph(this.dataGraph);
+      console.log('apiAnswer', this.dataGraph);
     } catch (error) {
       console.log(error);
     }

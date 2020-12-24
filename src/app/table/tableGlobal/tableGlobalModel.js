@@ -39,6 +39,10 @@ export default class CasesGlobalModel {
         'https://disease.sh/v3/covid-19/countries'
       );
       this.countriesData = await countriesData.json();
+      // this.countryBel = this.countriesData.filter(
+      //   (item) => item.country === 'Belarus'
+      // )[0].population;
+      // console.log('this.countryBel', this.countryBel);
 
       addFieldPerOneHundredThousand(this.countriesData);
     } catch (error) {
