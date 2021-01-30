@@ -18,7 +18,7 @@ export default class CasesCountryModel {
       this.globalCasesData[0] = await globalDataResponse.json();
       addFieldPerOneHundredThousand(this.globalCasesData);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

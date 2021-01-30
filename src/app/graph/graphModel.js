@@ -19,8 +19,7 @@ export default class GraphModel {
       this.apiAnswer = await summaryPerDate.json();
       this.getDataWorld(this.apiAnswer);
     } catch (error) {
-      console.log(error);
-    }
+      console.error(error);    }
   }
 
   async fetchDataCountry(nameCountry) {
@@ -32,7 +31,7 @@ export default class GraphModel {
 
       this.getDataWorld(this.dataTimeAll.timeline);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

@@ -107,17 +107,11 @@ document
     sortData(casesGlobalModel.countriesData, stateGlobalTable.keyValue);
     updateTableGlobal();
 
-    if (stateGlobalTable.isClickCountry) {
-      updateTableCountry(
-        stateCountryTable.countryData,
-        stateCountryTable.keyView
-      );
-    } else {
-      updateTableCountry(
-        casesCountryModel.globalCasesData[0],
-        stateCountryTable.keyView
-      );
-    }
+    const countryData = stateGlobalTable.isClickCountry
+      ? stateCountryTable.countryData
+      : casesCountryModel.globalCasesData[0];
+
+    updateTableCountry(countryData, stateCountryTable.keyView);
 
     addFieldCountryDailyDataGraph(
       graphModel.dataGraph,
@@ -144,17 +138,11 @@ document
       stateCountryTable.isSwitchParameterValue
     );
 
-    if (stateGlobalTable.isClickCountry) {
-      updateTableCountry(
-        stateCountryTable.countryData,
-        stateCountryTable.keyView
-      );
-    } else {
-      updateTableCountry(
-        casesCountryModel.globalCasesData[0],
-        stateCountryTable.keyView
-      );
-    }
+    const countryData = stateGlobalTable.isClickCountry
+      ? stateCountryTable.countryData
+      : casesCountryModel.globalCasesData[0];
+
+    updateTableCountry(countryData, stateCountryTable.keyView);
   });
 });
 

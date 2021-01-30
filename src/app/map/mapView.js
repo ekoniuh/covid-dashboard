@@ -6,7 +6,6 @@ export default class MapModel {
       worldCopyJump: true,
     };
 
-
     const map = new L.map('sample', mapOptions);
     const layer = new L.TileLayer(
       'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

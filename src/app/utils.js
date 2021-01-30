@@ -93,19 +93,19 @@ export function sortData(data, key) {
 
 function changeKeyValue(statePeople, isPeriod, isValueAbsolute) {
   let keyValue = '';
-  if (isPeriod === true && isValueAbsolute === true) {
+  if (isPeriod && isValueAbsolute) {
     keyValue = `${statePeople}TodayPerOneHundredThousand`;
     stateCountryTable.keyView = 'TodayPerOneHundredThousand';
   }
-  if (isPeriod === false && isValueAbsolute === false) {
+  if (!isPeriod && !isValueAbsolute) {
     keyValue = `${statePeople}`;
     stateCountryTable.keyView = '';
   }
-  if (isPeriod === true && isValueAbsolute === false) {
+  if (isPeriod && !isValueAbsolute) {
     keyValue = `${statePeople}Today`;
     stateCountryTable.keyView = 'Today';
   }
-  if (isPeriod === false && isValueAbsolute === true) {
+  if (!isPeriod && isValueAbsolute) {
     keyValue = `${statePeople}PerOneHundredThousand`;
     stateCountryTable.keyView = 'PerOneHundredThousand';
   }

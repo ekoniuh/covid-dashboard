@@ -21,13 +21,9 @@ export default class CasesGlobalModel {
       sortData(this.countriesData, stateGlobalTable.keyValue);
     }
     return this.countriesData.filter((item) => {
-      if (item.country === 'MS Zaandam') {
-        return false;
-      }
-      if (item.country === 'Diamond Princess') {
-        return false;
-      }
-      return true;
+      return !(
+        item.country === 'MS Zaandam' || item.country === 'Diamond Princess'
+      );
     });
   }
 
@@ -39,7 +35,7 @@ export default class CasesGlobalModel {
       this.countriesData = await countriesData.json();
       addFieldPerOneHundredThousand(this.countriesData);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }
